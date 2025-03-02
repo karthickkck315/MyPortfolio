@@ -146,7 +146,7 @@ const projects = [
   {
     name: 'Nilaas Fashion Institute',
     description: 'A comprehensive fashion education platform offering online and offline courses in fashion design, pattern making, and garment construction. Features include video lectures, course tracking, assignment submissions, and live mentoring sessions.',
-    image: '/assets/NillasFashion.png', // Updated to use local asset
+    image: 'https://i.imgur.com/D5pN1TS.png', // Updated to use local asset
     appStoreLink: 'https://apps.apple.com/in/app/nilaas-fashion-institute/id6572306106',
     playStoreLink: '',
     technologies: [
