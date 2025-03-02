@@ -1,0 +1,19 @@
+section {
+    scroll-margin-top: 80px;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 80px 20px 20px;
+    box-sizing: border-box;
+}
+
+/* Add smooth scrolling to the html element */
+html {
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+/* Ensure the body takes full height */
+body {
+    min-height: 100vh;
+}
