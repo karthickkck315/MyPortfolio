@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
@@ -13,9 +13,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSection, scrollY }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  //const { theme, setTheme } = useTheme();
-  //const isDarkMode = theme === 'dark';
-  //const toggleTheme = () => setTheme(isDarkMode ? 'light' : 'dark');
+  const observerRef = useRef<IntersectionObserver | null>(null);
 
   const handleNavClick = (sectionId: string) => {
     setActiveSection(sectionId);
@@ -23,34 +21,55 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
 
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Height of your fixed header
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
+      const headerHeight = 80;
+      const yOffset = -headerHeight;
+      const y = element.getBoundingClientRect().top + window.scrollY + yOffset;
+      
+      // Using scrollIntoView with setTimeout to ensure reliable scrolling
+      setTimeout(() => {
+        window.scroll({
+          top: y,
+          behavior: 'smooth'
+        });
+      }, 0);
     }
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      const currentPosition = window.scrollY + 100;
-      for (const section of sections) {
-        const element = document.getElementById(section.id);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (currentPosition >= offsetTop && currentPosition < offsetTop + offsetHeight) {
-            setActiveSection(section.id);
-            break;
+    // Cleanup previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    // Create new intersection observer
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const sectionId = entry.target.id;
+            setActiveSection(sectionId);
           }
-        }
+        });
+      },
+      {
+        rootMargin: '-20% 0px -70% 0px', // Adjust these values to fine-tune when sections become active
+        threshold: 0.2
+      }
+    );
+
+    // Observe all sections
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element && observerRef.current) {
+        observerRef.current.observe(element);
+      }
+    });
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
       }
     };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
   }, [sections, setActiveSection]);
 
   return (
