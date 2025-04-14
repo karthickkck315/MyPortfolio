@@ -81,8 +81,13 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
       link.click();
       document.body.removeChild(link);
     } else {
-      // Add doc download logic when available
-      alert('DOC format coming soon!');
+      const link = document.createElement('a');
+      link.href = '/Karthick_iOS_Developer_Resume.docx';
+      link.download = 'Karthick_iOS_Developer_Resume.docx';
+      link.target = '_blank';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     }
     setShowResumeOptions(false);
   };
@@ -217,7 +222,7 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
                       whileHover={{ x: 5, backgroundColor: 'rgba(59, 130, 246, 0.1)' }}
                     >
                       <FileText size={16} />
-                      <span>Download DOC</span>
+                      <span>Download DOCX</span>
                     </motion.button>
                   </div>
                 </motion.div>
