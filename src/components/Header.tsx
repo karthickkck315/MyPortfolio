@@ -73,21 +73,9 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
 
   const handleDownloadResume = (fileType: 'pdf' | 'doc') => {
     if (fileType === 'pdf') {
-      const link = document.createElement('a');
-      link.href = '/Karthick_iOS_Developer_Resume.pdf';
-      link.download = 'Karthick_iOS_Developer_Resume.pdf';
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      window.open('/Karthick_iOS_Developer_Resume.pdf', '_blank');
     } else {
-      const link = document.createElement('a');
-      link.href = '/Karthick_iOS_Developer_Resume.docx';
-      link.download = 'Karthick_iOS_Developer_Resume.docx';
-      link.target = '_blank';
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      window.open('/Karthick_iOS_Developer_Resume.docx', '_blank');
     }
     setShowResumeOptions(false);
   };
