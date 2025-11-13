@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Moon, Sun, FileText, Download } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 import { ThemeToggle } from './ThemeToggle';
+import { trackEvent } from '../utils/eventTracking';
 
 interface HeaderProps {
   sections: { id: string; label: string; icon: React.ReactNode }[];
@@ -52,6 +53,10 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
   `;
 
   const handleNavClick = (sectionId: string) => {
+    // Track navigation click
+    const sectionLabel = sections.find(s => s.id === sectionId)?.label || sectionId;
+    trackEvent('navigation_click', sectionLabel, 'header');
+    
     setActiveSection(sectionId);
     setMobileMenuOpen(false);
 
@@ -72,6 +77,9 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
   };
 
   const handleDownloadResume = (fileType: 'pdf' | 'doc') => {
+    // Track resume download event
+    trackEvent('resume_download', fileType.toUpperCase(), 'header');
+    
     if (fileType === 'pdf') {
       window.open('/Karthick_iOS_Developer_Resume.pdf', '_blank');
     } else {
@@ -146,7 +154,7 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
           className="text-center"
         >
           <motion.span 
-            className="text-primary-600 dark:text-primary-400 font-bold text-3xl"
+            className="text-primary-600 dark:text-primary-400 font-bold text-xl sm:text-2xl md:text-3xl"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300 }}
           >
@@ -155,11 +163,11 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
         </motion.div>
 
         {/* Right side buttons container */}
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-2 sm:space-x-4">
           {/* Resume Download Button with Dropdown */}
           <div className="relative" ref={resumeButtonRef}>
             <motion.button
-              className="download-button p-2.5 rounded-lg text-white text-sm flex items-center space-x-2 shadow-lg backdrop-blur-sm"
+              className="download-button p-2 sm:p-2.5 rounded-lg text-white text-xs sm:text-sm flex items-center space-x-1 sm:space-x-2 shadow-lg backdrop-blur-sm"
               whileHover={{ 
                 scale: 1.05,
                 transition: { 
@@ -181,7 +189,7 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
                   ease: "easeInOut"
                 }}
               >
-                <Download size={18} />
+                <Download size={16} className="sm:w-[18px] sm:h-[18px]" />
               </motion.div>
               <span className="hidden sm:inline font-medium">Download Resume</span>
             </motion.button>
@@ -246,7 +254,7 @@ const Header: React.FC<HeaderProps> = ({ sections, activeSection, setActiveSecti
           height: mobileMenuOpen ? 'auto' : 0,
         }}
         transition={{ duration: 0.3 }}
-        className="absolute right-4 top-16 w-48 overflow-hidden bg-white dark:bg-gray-800 rounded-md shadow-lg"
+        className="absolute right-2 sm:right-4 top-16 w-56 sm:w-64 overflow-hidden bg-white dark:bg-gray-800 rounded-md shadow-lg z-50"
       >
         <nav className="py-2">
           <ul className="space-y-2">

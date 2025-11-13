@@ -539,11 +539,23 @@ const About = () => {
     { Icon: Code, title: 'Tech Stack', value: 'Swift, SwiftUI, Flutter, Python' },
     { Icon: MapPin, title: 'Location', value: 'Coimbatore, India' },
     { Icon: Mail, title: 'Email', value: 'karthickiphone315@gmail.com' },
-    { Icon: Phone, title: 'Phone', value: <a href="tel:+919715168081" className="hover:text-primary-600 transition-colors">+91 9715168081</a> }
+    { 
+      Icon: Phone, 
+      title: 'Phone', 
+      value: (
+        <a 
+          href="tel:+919715168081" 
+          className="hover:text-primary-600 transition-colors"
+          onClick={() => trackEvent('contact_click', 'Phone', 'about')}
+        >
+          +91 9715168081
+        </a>
+      ) 
+    }
   ];
 
   return (
-    <div className="container mx-auto px-4 py-16 bg-gradient-to-b from-white to-gray-50">
+    <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16 bg-gradient-to-b from-white to-gray-50">
       {/* Inline CSS for the running line animation */}
       <style>{`
         @keyframes runningLine {
@@ -569,7 +581,7 @@ const About = () => {
           className="text-center mb-16"
           whileHover={{ scale: 1.02 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4 tracking-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-secondary-900 mb-4 tracking-tight px-4">
             About Me
           </h2>
           {/* Animated Underline */}
@@ -581,28 +593,28 @@ const About = () => {
           />
         </motion.div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 md:gap-8">
           {/* Main Content Section */}
           <motion.div variants={itemVariants} className="lg:col-span-2">
             <motion.div 
-              className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1"
+              className="bg-white p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg hover:shadow-2xl transition-shadow duration-300 transform hover:-translate-y-1"
               whileHover={{ scale: 1.01 }}
             >
-              <div className="flex items-center mb-6">
-                <Code className="mr-2 text-primary-500" size={28} />
-                <h3 className="text-2xl font-bold text-secondary-800">Profile Summary</h3>
+              <div className="flex items-center mb-4 sm:mb-6">
+                <Code className="mr-2 text-primary-500 w-6 h-6 sm:w-7 sm:h-7" size={24} />
+                <h3 className="text-xl sm:text-2xl font-bold text-secondary-800">Profile Summary</h3>
               </div>
-              <div className="space-y-4 text-secondary-600 leading-relaxed">
+              <div className="space-y-3 sm:space-y-4 text-sm sm:text-base text-secondary-600 leading-relaxed">
                 <p>
                   Hello! I’m a versatile and passionate developer with over 10+ years of professional experience specializing in iOS application development. My expertise lies in Swift, SwiftUI, UIKit, and Objective-C, where I’ve built 25+ high-performance mobile apps catering to diverse industries—from food delivery and taxi booking to CRM, eCommerce, and video streaming. More recently, I’ve expanded my skill set to include Flutter for cross-platform development, along with a deepening interest in AI agent creation.
                 </p>
 
-                <h4 className="text-xl font-semibold text-secondary-800 mt-6 mb-3">
+                <h4 className="text-lg sm:text-xl font-semibold text-secondary-800 mt-4 sm:mt-6 mb-2 sm:mb-3">
                   iOS Development & Project Experience
                 </h4>
 
                 {/* Core Competencies */}
-                <h5 className="text-lg font-semibold mb-2">Core Competencies</h5>
+                <h5 className="text-base sm:text-lg font-semibold mb-2">Core Competencies</h5>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>Swift, SwiftUI, UIKit, Objective-C – Building seamless, intuitive user interfaces.</li>
                   <li>Design Patterns: MVC, MVVM – Ensuring clean, maintainable, and scalable code.</li>
@@ -614,7 +626,7 @@ const About = () => {
                 </ul>
 
                 {/* Notable Projects */}
-                <h5 className="text-lg font-semibold mt-4 mb-2">Notable Projects</h5>
+                <h5 className="text-base sm:text-lg font-semibold mt-3 sm:mt-4 mb-2">Notable Projects</h5>
                 <ul className="list-disc pl-5 space-y-2">
                   <li>Food Delivery Apps (Single/Multi-Vendor): Swiggy, Zomato, Foodpanda clones with distinct user and rider modules for seamless ordering and delivery.</li>
                   <li>Taxi Booking Platforms: Uber/Ola-like ecosystems, integrating location services, driver-rider matching, and real-time tracking.</li>
@@ -633,7 +645,7 @@ const About = () => {
                   To stay at the forefront of technological innovation, I’ve also ventured into Flutter. This enables me to deliver apps on iOS and Android from a single codebase—offering clients a fast and cost-effective route to market without compromising on performance or user experience.
                 </p>
 
-                <h4 className="text-xl font-semibold text-secondary-800 mt-6 mb-3">
+                <h4 className="text-lg sm:text-xl font-semibold text-secondary-800 mt-4 sm:mt-6 mb-2 sm:mb-3">
                   AI Agent Creation & Chatbot Innovations
                 </h4>
                 <p>
@@ -661,7 +673,7 @@ const About = () => {
                   Through these explorations, I’m learning prompt engineering, fine-tuning, and hands-on deployment—pushing the boundaries of what’s possible with NLP (Natural Language Processing) to build smarter, more adaptive apps.
                 </p>
 
-                <h4 className="text-xl font-semibold text-secondary-800 mt-6 mb-3">
+                <h4 className="text-lg sm:text-xl font-semibold text-secondary-800 mt-4 sm:mt-6 mb-2 sm:mb-3">
                   Technical Approach & Collaboration
                 </h4>
                 <p>
@@ -673,14 +685,14 @@ const About = () => {
                   <li><strong>Mentorship & Learning:</strong> Sharing knowledge with peers and staying updated through ongoing experimentation and research.</li>
                 </ul>
 
-                <h4 className="text-xl font-semibold text-secondary-800 mt-6 mb-3">
+                <h4 className="text-lg sm:text-xl font-semibold text-secondary-800 mt-4 sm:mt-6 mb-2 sm:mb-3">
                   Personal Passions
                 </h4>
                 <p className="mb-4">
                   Outside of coding, I’m enthusiastic about technology, gadgets, and farming. My interest in farming adds a grounded perspective to my tech-driven life, reminding me of the importance of sustainability, growth, and nurturing innovation in all endeavors. This combination of seemingly diverse interests fuels my creativity and problem-solving skills in tech.
                 </p>
 
-                <h4 className="text-xl font-semibold text-secondary-800 mt-6 mb-3">
+                <h4 className="text-lg sm:text-xl font-semibold text-secondary-800 mt-4 sm:mt-6 mb-2 sm:mb-3">
                   Career Objective
                 </h4>
                 <p className="mb-4">
@@ -696,10 +708,10 @@ const About = () => {
           {/* Personal Info Card */}
           <motion.div variants={itemVariants}>
             <motion.div 
-              className="bg-white p-8 rounded-2xl shadow-lg sticky top-8 transition-transform duration-300 hover:scale-105 relative overflow-hidden"
+              className="bg-white p-4 sm:p-6 md:p-8 rounded-xl md:rounded-2xl shadow-lg lg:sticky lg:top-8 transition-transform duration-300 hover:scale-105 relative overflow-hidden"
             >
-              <h3 className="text-2xl font-bold text-secondary-800 mb-6">Personal Info</h3>
-              <div className="space-y-6">
+              <h3 className="text-xl sm:text-2xl font-bold text-secondary-800 mb-4 sm:mb-6">Personal Info</h3>
+              <div className="space-y-4 sm:space-y-6">
                 {personalInfoItems.map((item, index) => (
                   <motion.div key={index} className="flex items-start group relative" whileHover={{ scale: 1.02 }}>
                     {/* Running line animation behind the icon */}

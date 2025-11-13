@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, ArrowRight } from 'lucide-react';
+import { trackEvent } from '../utils/eventTracking';
 
 const projects = [
   {
@@ -178,23 +179,23 @@ const Projects = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-secondary-50">
       {/* Header Section */}
-      <div className="container mx-auto px-4 pt-20 pb-12">
+      <div className="container mx-auto px-4 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-12">
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           className="max-w-3xl mx-auto text-center"
         >
-          <h2 className="text-6xl font-bold text-secondary-900 mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-secondary-900 mb-4 sm:mb-6 px-4">
             Projects
           </h2>
-          <p className="text-xl text-secondary-600 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-secondary-600 leading-relaxed px-4">
             Showcasing innovative mobile applications built with modern technologies
           </p>
         </motion.div>
       </div>
 
       {/* Projects Timeline */}
-      <div className="container mx-auto px-4 py-12">
+      <div className="container mx-auto px-4 py-8 sm:py-12">
         <div className="max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <motion.div
@@ -203,17 +204,17 @@ const Projects = () => {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`flex flex-col md:flex-row items-center gap-8 mb-20 ${
+              className={`flex flex-col md:flex-row items-center gap-6 sm:gap-8 mb-12 sm:mb-16 md:mb-20 ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
             >
               {/* Project Image */}
               <div className="w-full md:w-1/2">
-                <div className="relative group overflow-hidden rounded-2xl">
+                <div className="relative group overflow-hidden rounded-xl md:rounded-2xl">
                   <img
                     src={project.image}
                     alt={project.name}
-                    className="w-full h-[400px] object-contain transform group-hover:scale-105 transition-transform duration-500 bg-white"
+                    className="w-full h-[250px] sm:h-[300px] md:h-[400px] object-contain transform group-hover:scale-105 transition-transform duration-500 bg-white"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-2">
@@ -222,9 +223,10 @@ const Projects = () => {
                         href={project.appStoreLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white/95 hover:bg-white text-primary-600 hover:text-primary-700 px-4 py-2 rounded-full font-medium backdrop-blur-sm flex items-center gap-2 transition-colors duration-300 shadow-lg"
+                        className="bg-white/95 hover:bg-white text-primary-600 hover:text-primary-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm flex items-center gap-1 sm:gap-2 transition-colors duration-300 shadow-lg"
+                        onClick={() => trackEvent('project_click', `App Store - ${project.name}`, 'projects')}
                       >
-                        App Store <ArrowRight size={16} />
+                        App Store <ArrowRight size={14} className="sm:w-4 sm:h-4" />
                       </a>
                     )}
                     {project.playStoreLink && (
@@ -232,9 +234,10 @@ const Projects = () => {
                         href={project.playStoreLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-white/95 hover:bg-white text-primary-600 hover:text-primary-700 px-4 py-2 rounded-full font-medium backdrop-blur-sm flex items-center gap-2 transition-colors duration-300 shadow-lg"
+                        className="bg-white/95 hover:bg-white text-primary-600 hover:text-primary-700 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs sm:text-sm font-medium backdrop-blur-sm flex items-center gap-1 sm:gap-2 transition-colors duration-300 shadow-lg"
+                        onClick={() => trackEvent('project_click', `Play Store - ${project.name}`, 'projects')}
                       >
-                        Play Store <ArrowRight size={16} />
+                        Play Store <ArrowRight size={14} className="sm:w-4 sm:h-4" />
                       </a>
                     )}
                   </div>
@@ -242,36 +245,36 @@ const Projects = () => {
               </div>
 
               {/* Project Info */}
-              <div className="w-full md:w-1/2 space-y-4">
-                <div className="flex items-center gap-4">
-                  <span className="text-4xl font-bold text-primary-600/20">
+              <div className="w-full md:w-1/2 space-y-3 sm:space-y-4">
+                <div className="flex items-center gap-2 sm:gap-4">
+                  <span className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary-600/20">
                     {`0${index + 1}`}
                   </span>
-                  <h3 className="text-3xl font-bold text-secondary-900">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-secondary-900">
                     {project.name}
                   </h3>
                 </div>
                 
-                <p className="text-lg text-secondary-600">
+                <p className="text-base sm:text-lg text-secondary-600">
                   {project.description}
                 </p>
 
                 {project.features && (
-                  <div className="grid grid-cols-2 gap-2 pt-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 sm:pt-4">
                     {project.features.map((feature, idx) => (
                       <div key={idx} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary-600" />
-                        <span className="text-sm text-secondary-600">{feature}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary-600 flex-shrink-0" />
+                        <span className="text-xs sm:text-sm text-secondary-600">{feature}</span>
                       </div>
                     ))}
                   </div>
                 )}
 
-                <div className="flex flex-wrap gap-2 pt-4">
+                <div className="flex flex-wrap gap-2 pt-2 sm:pt-4">
                   {project.technologies.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="px-4 py-2 bg-white shadow-sm rounded-full text-secondary-600 text-sm font-medium"
+                      className="px-3 py-1.5 sm:px-4 sm:py-2 bg-white shadow-sm rounded-full text-secondary-600 text-xs sm:text-sm font-medium"
                     >
                       {tech}
                     </span>
@@ -279,13 +282,13 @@ const Projects = () => {
                 </div>
 
                 {project.highlights && (
-                  <div className="mt-4 p-4 bg-primary-50 rounded-xl">
-                    <h4 className="text-lg font-semibold text-primary-700 mb-2">Highlights</h4>
-                    <div className="grid grid-cols-2 gap-2">
+                  <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-primary-50 rounded-lg sm:rounded-xl">
+                    <h4 className="text-base sm:text-lg font-semibold text-primary-700 mb-2">Highlights</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {project.highlights.map((highlight, idx) => (
                         <div key={idx} className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-primary-600" />
-                          <span className="text-sm text-primary-700">{highlight}</span>
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary-600 flex-shrink-0" />
+                          <span className="text-xs sm:text-sm text-primary-700">{highlight}</span>
                         </div>
                       ))}
                     </div>

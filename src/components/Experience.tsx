@@ -173,7 +173,7 @@ const Experience = () => {
   };
 
   return (
-    <div className="container mx-auto px-4">
+    <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
       <motion.div
         ref={ref}
         variants={containerVariants}
@@ -181,9 +181,9 @@ const Experience = () => {
         animate={inView ? 'visible' : 'hidden'}
         className="max-w-4xl mx-auto"
       >
-        <motion.div variants={titleVariants} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-secondary-900 mb-4">Work Experience</h2>
-          <div className="h-1 w-20 bg-primary-500 mx-auto"></div>
+        <motion.div variants={titleVariants} className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-secondary-900 mb-3 sm:mb-4 px-4">Work Experience</h2>
+          <div className="h-1 w-16 sm:w-20 bg-primary-500 mx-auto"></div>
         </motion.div>
 
         <div className="relative">
@@ -191,7 +191,7 @@ const Experience = () => {
             initial={{ scaleY: 0 }}
             animate={inView ? { scaleY: 1 } : { scaleY: 0 }}
             transition={{ duration: 1.5, ease: "easeInOut" }}
-            className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-primary-200"
+            className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 md:w-1 bg-primary-200"
             style={{ transformOrigin: 'top' }}
           />
 
@@ -200,20 +200,20 @@ const Experience = () => {
               key={index}
               custom={index}
               variants={itemVariants}
-              className={`relative mb-12 md:mb-0 md:w-1/2 ${
-                index % 2 === 0 ? 'md:pr-12 md:ml-0' : 'md:pl-12 md:ml-auto'
+              className={`relative mb-8 sm:mb-12 md:mb-0 md:w-1/2 ${
+                index % 2 === 0 ? 'md:pr-12 md:ml-0 pl-8 md:pl-0' : 'md:pl-12 md:ml-auto pl-8 md:pl-12'
               }`}
             >
               <motion.div 
                 variants={dotVariants}
                 className={`absolute top-0 ${
-                  index % 2 === 0 ? 'right-0 md:right-auto md:left-full md:-ml-2.5' : 'left-0 md:left-auto md:right-full md:-mr-2.5'
+                  index % 2 === 0 ? 'left-0 md:right-auto md:left-full md:-ml-2.5 -ml-2.5' : 'left-0 md:left-auto md:right-full md:-mr-2.5 -ml-2.5'
                 }`}
               >
                 <div className="relative">
                   <motion.div 
                     whileHover={{ scale: 1.2 }}
-                    className={`w-5 h-5 rounded-full border-4 ${
+                    className={`w-4 h-4 md:w-5 md:h-5 rounded-full border-2 md:border-4 ${
                       exp.current ? 'bg-primary-500 border-primary-200' : 'bg-white border-primary-500'
                     }`}
                   />
@@ -222,7 +222,7 @@ const Experience = () => {
                       initial="initial"
                       animate="animate"
                       variants={pulseVariants}
-                      className="absolute inset-0 w-5 h-5 rounded-full bg-primary-500 -z-10"
+                      className="absolute inset-0 w-4 h-4 md:w-5 md:h-5 rounded-full bg-primary-500 -z-10"
                     />
                   )}
                 </div>
@@ -232,7 +232,7 @@ const Experience = () => {
                 variants={cardVariants}
                 whileHover="hover"
                 whileTap="tap"
-                className={`bg-gradient-to-br from-white to-gray-50 p-6 rounded-lg shadow-md 
+                className={`bg-gradient-to-br from-white to-gray-50 p-4 sm:p-5 md:p-6 rounded-lg shadow-md 
                   border border-gray-100 backdrop-blur-sm 
                   ${index % 2 === 0 ? 'md:text-right' : ''}
                   transform-gpu perspective-1000`}
@@ -255,7 +255,7 @@ const Experience = () => {
                       rest: { scale: 1 },
                       hover: { scale: 1.2 }
                     }}
-                    className={`relative p-2 rounded-full ${exp.bgColor}`}
+                    className={`relative p-1.5 sm:p-2 rounded-full ${exp.bgColor}`}
                   >
                     {exp.icons.map((Icon, iconIndex) => (
                       <motion.div
@@ -272,20 +272,20 @@ const Experience = () => {
                           }
                         }}
                       >
-                        <Icon size={20} className={exp.iconColor} />
+                        <Icon size={18} className={`${exp.iconColor} sm:w-5 sm:h-5`} />
                       </motion.div>
                     ))}
                   </motion.div>
-                  <h3 className="text-xl font-bold text-secondary-800 ml-3">{exp.company}</h3>
+                  <h3 className="text-lg sm:text-xl font-bold text-secondary-800 ml-2 sm:ml-3">{exp.company}</h3>
                 </motion.div>
                 <motion.h4 
                   whileHover={{ x: index % 2 === 0 ? -5 : 5 }}
-                  className="text-lg font-semibold text-primary-600 mb-2"
+                  className="text-base sm:text-lg font-semibold text-primary-600 mb-1 sm:mb-2"
                 >
                   {exp.role}
                 </motion.h4>
-                <div className="flex flex-wrap text-sm text-secondary-500 mb-2">
-                  <span className="mr-4">{exp.period}</span>
+                <div className="flex flex-col sm:flex-row flex-wrap text-xs sm:text-sm text-secondary-500 mb-2 gap-1 sm:gap-0">
+                  <span className="sm:mr-4">{exp.period}</span>
                   <span>{exp.location}</span>
                 </div>
                 {exp.current && (

@@ -56,7 +56,7 @@ const Achievements = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
       <motion.div
         ref={ref}
         variants={containerVariants}
@@ -64,37 +64,37 @@ const Achievements = () => {
         animate={inView ? 'visible' : 'hidden'}
         className="max-w-6xl mx-auto"
       >
-        <motion.div variants={cardVariants} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-800 mb-4 flex justify-center items-center gap-2">
-            <Star size={40} className="text-indigo-500" />
-            Achievements & Awards
+        <motion.div variants={cardVariants} className="text-center mb-8 sm:mb-12 md:mb-16">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-800 mb-3 sm:mb-4 flex justify-center items-center gap-2 px-4">
+            <Star size={28} className="sm:w-10 sm:h-10 text-indigo-500" />
+            <span>Achievements & Awards</span>
           </h2>
-          <div className="h-1 w-24 bg-indigo-500 mx-auto rounded-full"></div>
+          <div className="h-1 w-20 sm:w-24 bg-indigo-500 mx-auto rounded-full"></div>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {achievements.map((achievement, index) => (
             <motion.div
               key={index}
               variants={cardVariants}
               whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-              className="bg-white p-8 rounded-xl shadow-lg border-t-4 border-transparent bg-clip-padding"
+              className="bg-white p-5 sm:p-6 md:p-8 rounded-lg sm:rounded-xl shadow-lg border-t-4 border-transparent bg-clip-padding"
               style={{
                 borderImage: 'linear-gradient(to right, #6366F1, #8B5CF6) 1',
               }}
             >
-              <div className="mb-6 flex justify-center">
-                <div className="p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full">
+              <div className="mb-4 sm:mb-6 flex justify-center">
+                <div className="p-3 sm:p-4 bg-gradient-to-r from-indigo-100 to-purple-100 rounded-full">
                   {achievement.icon}
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 mb-3 text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2 sm:mb-3 text-center">
                 {achievement.title}
               </h3>
-              <p className="text-indigo-600 text-sm mb-4 text-center uppercase tracking-wide">
+              <p className="text-indigo-600 text-xs sm:text-sm mb-3 sm:mb-4 text-center uppercase tracking-wide">
                 {achievement.company}
               </p>
-              <p className="text-gray-600 text-center flex-grow">
+              <p className="text-sm sm:text-base text-gray-600 text-center flex-grow">
                 {achievement.description}
               </p>
             </motion.div>

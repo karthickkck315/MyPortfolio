@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
 import { SiApple, SiAndroid, SiFirebase, SiFlutter, SiOpenai } from 'react-icons/si';
+import { trackEvent } from '../utils/eventTracking';
 
 interface HeroProps {
   setActiveSection: (section: string) => void;
@@ -16,20 +17,35 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 24px;
+      gap: 12px;
       margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    @media (min-width: 640px) {
+      .float-container {
+        gap: 24px;
+      }
     }
 
     .float-icon {
-      width: 64px;
-      height: 64px;
+      width: 48px;
+      height: 48px;
       background: white;
-      border-radius: 16px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
       box-shadow: 0 4px 20px rgba(59, 130, 246, 0.15);
       position: relative;
+    }
+
+    @media (min-width: 640px) {
+      .float-icon {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+      }
     }
 
     .float-icon::after {
@@ -378,6 +394,9 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
   };
 
   const handleScrollDown = () => {
+    // Track scroll down button click
+    trackEvent('navigation_click', 'Scroll to About', 'hero');
+    
     setActiveSection('about');
     const aboutSection = document.getElementById('about');
     if (aboutSection) {
@@ -430,8 +449,8 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
         <div className="wave"></div>
       </div>
 
-      <div className="container mx-auto px-4 h-screen flex flex-col justify-center items-center relative">
-        <div className="text-center max-w-4xl">
+      <div className="container mx-auto px-4 min-h-screen flex flex-col justify-center items-center relative py-20 sm:py-0">
+        <div className="text-center max-w-4xl w-full">
           <div className="float-container">
             {techIcons.map((Icon, index) => (
               <motion.div
@@ -444,7 +463,7 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
                 }}
                 whileHover="hover"
               >
-                <Icon size={32} className="text-primary-600" />
+                <Icon size={24} className="text-primary-600 sm:w-8 sm:h-8" />
               </motion.div>
             ))}
           </div>
@@ -453,7 +472,7 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-secondary-900 to-primary-600 bg-clip-text text-transparent mb-4"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold bg-gradient-to-r from-secondary-900 to-primary-600 bg-clip-text text-transparent mb-4 px-4"
           >
             Karthick C
           </motion.h1>
@@ -485,20 +504,20 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
                 }
               }}
             >
-              <div className="content-inner px-6 py-3">
-                <span className="text-white text-xl font-medium">
+              <div className="content-inner px-4 py-2 sm:px-6 sm:py-3">
+                <span className="text-white text-base sm:text-xl font-medium">
                   Senior iOS Developer
                 </span>
               </div>
             </motion.div>
-            <p className="text-primary-600 font-medium mt-2">Turning Ideas into Amazing Apps</p>
+            <p className="text-primary-600 font-medium mt-2 text-sm sm:text-base px-4">Turning Ideas into Amazing Apps</p>
           </motion.div>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            className="text-xl text-secondary-600 mb-10 max-w-2xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-secondary-600 mb-10 max-w-2xl mx-auto leading-relaxed px-4"
           >
             With over 10+ years of expertise in iOS development, I specialize in creating 
             intuitive, performant, and beautiful applications that users love. 
@@ -509,12 +528,12 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex justify-center space-x-8 mb-12"
+            className="flex justify-center space-x-4 sm:space-x-8 mb-12 px-4"
           >
             {[
-              { icon: Github, href: "https://github.com/karthickkck315", class: "github-icon" },
-              { icon: Linkedin, href: "https://linkedin.com/in/karthick-kck", class: "linkedin-icon" },
-              { icon: Mail, href: "mailto:karthickiphone315@gmail.com", class: "email-icon" }
+              { icon: Github, href: "https://github.com/karthickkck315", class: "github-icon", label: "GitHub" },
+              { icon: Linkedin, href: "https://linkedin.com/in/karthick-kck", class: "linkedin-icon", label: "LinkedIn" },
+              { icon: Mail, href: "mailto:karthickiphone315@gmail.com", class: "email-icon", label: "Email" }
             ].map((social, index) => (
               <motion.a
                 key={index}
@@ -528,6 +547,7 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
                 whileHover="hover"
                 whileTap="tap"
                 custom={index}
+                onClick={() => trackEvent('contact_click', social.label, 'hero')}
               >
                 <div className="social-icon-wrapper">
                   <div className="social-glow"></div>

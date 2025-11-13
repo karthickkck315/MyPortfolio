@@ -148,22 +148,22 @@ const Skills = () => {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-white to-primary-50 py-20">
+    <div className="min-h-screen bg-gradient-to-br from-secondary-50 via-white to-primary-50 py-12 sm:py-16 md:py-20">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-16"
+          className="text-center mb-8 sm:mb-12 md:mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-secondary-900 mb-4">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-secondary-900 mb-3 sm:mb-4 px-4">
             Technical Skills
           </h2>
-          <p className="text-secondary-600 text-lg max-w-2xl mx-auto">
+          <p className="text-secondary-600 text-base sm:text-lg max-w-2xl mx-auto px-4">
             Expertise in iOS development with a strong foundation in various technologies
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-7xl mx-auto">
           {skillCategories.map((category, idx) => (
             <motion.div
               key={idx}
@@ -171,17 +171,17 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition-shadow duration-300"
+              className="bg-white rounded-xl md:rounded-2xl shadow-lg p-4 sm:p-5 md:p-6 hover:shadow-xl transition-shadow duration-300"
             >
-              <div className={`${category.bgColor} w-12 h-12 rounded-xl flex items-center justify-center text-white mb-6`}>
+              <div className={`${category.bgColor} w-10 h-10 sm:w-12 sm:h-12 rounded-lg sm:rounded-xl flex items-center justify-center text-white mb-4 sm:mb-6`}>
                 {category.icon}
               </div>
               
-              <h3 className="text-xl font-bold text-secondary-900 mb-6">
+              <h3 className="text-lg sm:text-xl font-bold text-secondary-900 mb-4 sm:mb-6">
                 {category.title}
               </h3>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {category.skills.map((skill, skillIdx) => (
                   <div key={skillIdx} className="flex items-center justify-between">
                     <div className="flex-1">

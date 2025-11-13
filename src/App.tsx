@@ -44,36 +44,36 @@ function App() {
       <div className="min-h-screen bg-gradient-to-br from-secondary-50 to-secondary-100 dark:from-gray-900 dark:to-gray-800 transition-colors duration-300">
         <Header sections={sections} activeSection={activeSection} setActiveSection={setActiveSection} scrollY={scrollY} />
         
-        <main className="pt-20">
+        <main className="pt-16 sm:pt-20">
           <section id="home" className="min-h-screen">
             <Hero setActiveSection={setActiveSection} />
           </section>
 
-          <section id="about" className="py-20 dark:bg-gray-900">
+          <section id="about" className="py-8 sm:py-12 md:py-16 lg:py-20 dark:bg-gray-900">
             <About />
           </section>
 
-          <section id="experience" className="py-20 bg-white dark:bg-gray-800">
+          <section id="experience" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white dark:bg-gray-800">
             <Experience />
           </section>
 
-          <section id="projects" className="py-20 dark:bg-gray-900">
+          <section id="projects" className="py-8 sm:py-12 md:py-16 lg:py-20 dark:bg-gray-900">
             <Projects />
           </section>
 
-          <section id="skills" className="py-20 bg-white dark:bg-gray-800">
+          <section id="skills" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white dark:bg-gray-800">
             <Skills />
           </section>
 
-          <section id="achievements" className="py-20 dark:bg-gray-900">
+          <section id="achievements" className="py-8 sm:py-12 md:py-16 lg:py-20 dark:bg-gray-900">
             <Achievements />
           </section>
 
-          <section id="opensource" className="py-20 bg-white dark:bg-gray-800">
+          <section id="opensource" className="py-8 sm:py-12 md:py-16 lg:py-20 bg-white dark:bg-gray-800">
             <OpenSource />
           </section>
 
-          <section id="contact" className="py-20 dark:bg-gray-900">
+          <section id="contact" className="py-8 sm:py-12 md:py-16 lg:py-20 dark:bg-gray-900">
             <Contact />
           </section>
         </main>
