@@ -506,7 +506,7 @@ const Hero: React.FC<HeroProps> = ({ setActiveSection }) => {
             >
               <div className="content-inner px-4 py-2 sm:px-6 sm:py-3">
                 <span className="text-white text-base sm:text-xl font-medium">
-                  Senior iOS Developer
+                  Senior iOS Developer - Immediately Available
                 </span>
               </div>
             </motion.div>

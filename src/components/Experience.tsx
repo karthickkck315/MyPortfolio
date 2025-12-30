@@ -18,9 +18,9 @@ const experiences = [
   {
     company: 'KAMBAA INCORPORATION',
     role: 'Senior iOS Developer',
-    period: 'Sep 2022 - Present',
+    period: 'Sep 2022 - Dec 2025',
     location: 'Coimbatore',
-    current: true,
+    current: false,
     icon: Rocket,
     iconColor: 'text-blue-500',
     bgColor: 'bg-blue-100',
@@ -281,11 +281,13 @@ const Experience = () => {
                 <motion.h4 
                   whileHover={{ x: index % 2 === 0 ? -5 : 5 }}
                   className="text-base sm:text-lg font-semibold text-primary-600 mb-1 sm:mb-2"
+                  
                 >
                   {exp.role}
                 </motion.h4>
-                <div className="flex flex-col sm:flex-row flex-wrap text-xs sm:text-sm text-secondary-500 mb-2 gap-1 sm:gap-0">
-                  <span className="sm:mr-4">{exp.period}</span>
+                <div
+                    className="inline-block px-2 py-1 bg-primary-100 text-primary-700 text-xs font-medium rounded-full">
+                    <span className="sm:mr-4">{exp.period}</span>
                   <span>{exp.location}</span>
                 </div>
                 {exp.current && (
