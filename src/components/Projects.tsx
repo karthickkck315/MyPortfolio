@@ -1,40 +1,75 @@
-import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { trackEvent } from '../utils/eventTracking';
 
 const projects = [
   {
-    name: 'VojVoj - Habit Builder',
-    description: 'An intelligent habit-tracking and personal development app that helps users build lasting habits through scientifically proven methods. Features include habit stacking, smart reminders, progress analytics, and social accountability.',
+    name: 'VojVoj - Social Media Platform',
+    description: 'VojVoj is a "Creator Economy" platform designed to fix the problems of traditional social media (like Instagram or TikTok). Its primary mission is to allow creators to earn money without relying on ads or secret algorithms.The client wanted a social media app like Instagram, but with no ads. Instead, creators get paid directly by fans. My job was to talk to the client, understand their vision, and build the entire visual part of the app.Most platforms only pay creators if they have millions of followers or high ad views.The VojVoj transparent, direct-payment ecosystem. It focuses on niches like skateboarding, surfing, and snowboarding.',
     image: 'https://scontent.fmaa2-1.fna.fbcdn.net/v/t39.30808-6/475985534_915845797413858_7302844347044631368_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=DxZ96iEC7ggQ7kNvgH4Msa7&_nc_oc=AdgjDn3lnxyIa0fYbS7wA_0lsFxweZQnnkuVDzwLeLgLpjXCC3HGFzRr02_heyy5gyJkgU3JlKw-A7ewHowVP5g-&_nc_zt=23&_nc_ht=scontent.fmaa2-1.fna&_nc_gid=A6KbQnbAAyDDYcMMKDp73Wl&oh=00_AYDF4Mz2WXyszxQcr-YJ32ESGjgokZ3xOFIhGi7nXX9RAg&oe=67CA7C5B',
     appStoreLink: 'https://apps.apple.com/in/app/vojvoj/id1599081960',
     playStoreLink: '',
     technologies: [
       'Swift',
+      'UIKit',
+      'Storyboard',
+      'StoreKit',
+      'Core Animation',
+      'Core Graphics',
+      'Core Image',
+      'Core Text',
+      'Core Video',
+      'Core Audio',
+      'Core Media',
       'Firebase',
+      'Realm Database',
+      'AWS S3',
+      'Amazon IVS Player SDK',
+      'iOS Share Extension',
       'WidgetKit',
       'Push Notifications',
       'Firebase Analytics',
+      'Firebase Crashlytics',
+      'Firebase Remote Config',
+      'Firebase Firestore Database',
+      'Firebase Authentication',
+      'Firebase Storage',
+      'Firebase Performance Monitoring',
       'In-App Purchases',
-      'video streaming',
-      'One-on-One Chat'
+      'Video Streaming',
+      'One-on-One Chat',
+      'Deep Linking',
     ],
     features: [
-      'Smart habit stacking',
-      'Progress tracking & analytics',
-      'Custom reminder system',
-      'Social accountability',
-      'Habit journaling',
-      'Achievement rewards'
+      'Sign In with Apple',
+      'Ad-Free Feed Experience',
+      'Subscription-only',
+      'Coin Donation/Purchase',
+      'Collaborative Post Tagging',
+      'Achievement rewards',
+      'Digital wallet system',
+      'Claim Rewards',
+      'Achievement Badges',
+      'Leaderboard',
+      'Notification System',
+      'Deep Linking',
+      'Social Sharing',
+      'Mute/Unmute',
+      'Delete Post',
+      'Report Post',
+      'Share Post/Video/Profile with friends',
+      'Comment on Post/Video',
+      'Refer and Earn',
+      'Gallery-to-App Integration',
+    ],
+    contributions: [
+      'No Ads/Algorithms: Content is served based on community and follows, not what an ad-bot decides.',
+'Coin System: Users buy "Coin Packs" (Small, Medium, Large) and can donate 1, 5, or 10 coins directly to a post they like.',
+'Subscription Model: Creators can "paywall" long-form content (tips, tutorials, behind-the-scenes).',
+'Collaboration Split: A unique feature where two creators can post one video together and the app automatically splits the earnings between their two digital wallets.'
     ],
     highlights: [
-      'Over 50,000+ active users',
-      'Scientifically backed methodology',
-      'Personalized habit recommendations',
-      'Daily streaks & milestones',
-      'Integration with Apple Health',
-      'Premium subscription model'
+      'Over 5000+ active users',
     ]
   },
   {
@@ -258,6 +293,20 @@ const Projects = () => {
                 <p className="text-base sm:text-lg text-secondary-600">
                   {project.description}
                 </p>
+
+                {project.contributions && (
+                  <div className="mt-3 sm:mt-4 p-3 sm:p-4 bg-secondary-50 rounded-lg sm:rounded-xl">
+                    <h4 className="text-base sm:text-lg font-semibold text-secondary-700 mb-2 sm:mb-3">Business Logic</h4>
+                    <ul className="space-y-2">
+                      {project.contributions.map((contribution, idx) => (
+                        <li key={idx} className="flex items-start gap-2 sm:gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary-600 flex-shrink-0 mt-1.5 sm:mt-2" />
+                          <span className="text-xs sm:text-sm text-secondary-700 leading-relaxed">{contribution}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
 
                 {project.features && (
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-2 sm:pt-4">
